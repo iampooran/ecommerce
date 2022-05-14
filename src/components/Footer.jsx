@@ -6,6 +6,7 @@ import paymentMethod from "./Images/payment_method.png"
 
 const Container = styled.div`
     display: flex;
+    
 `;
 
 const Left = styled.div`
@@ -72,6 +73,7 @@ const  ContactItem = styled.div`
 
 const Payment = styled.img`
     width: 50%;
+    
 `;
 
 

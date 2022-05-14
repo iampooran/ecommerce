@@ -5,11 +5,15 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 
-const Container = styled.div``;
+const Container = styled.div`
+    
+`;
 
 const Wrapper = styled.div`
-    padding: 50px;
+    padding: 10px;
     display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 const ImgContainer = styled.div`
@@ -17,8 +21,9 @@ const ImgContainer = styled.div`
 `;
 
 const Image = styled.img`
-    width: 100%;
-    height: 50vh;
+    margin-left: 30px;
+    width: 85%;
+    height: 60vh;
     object-fit: cover;
 `;
 
@@ -117,6 +122,8 @@ const Product = () => {
                         <FilterTitle>Size</FilterTitle>
                         <FilterSize>
                         <FilterSizeOption>4GB</FilterSizeOption>
+                        <FilterSizeOption>6GB</FilterSizeOption>
+                        <FilterSizeOption>8GB</FilterSizeOption>
                         </FilterSize>
                     </Filter>
                 </FilterContainer>
