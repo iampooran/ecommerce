@@ -1,11 +1,13 @@
 import { Facebook, Instagram, MailOutlined, Phone, Pinterest, Room, Twitter } from '@mui/icons-material';
 import styled from 'styled-components'
+import { mobile } from '../responsive';
 
 import paymentMethod from "./Images/payment_method.png"
 
 
 const Container = styled.div`
     display: flex;
+    ${mobile({flexDirection:"column"})}
     
 `;
 
@@ -41,6 +43,8 @@ const SocialIcon= styled.div`
 const Center = styled.div`
     flex:1;
     padding: 20px;
+    
+    ${mobile({display:"none"})}
 `;
 
 const Title = styled.h3`

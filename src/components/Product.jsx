@@ -1,5 +1,6 @@
 import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined } from "@mui/icons-material";
 import styled from "styled-components"
+import { mobile } from "../responsive";
 
 
 
@@ -45,6 +46,8 @@ const Circle = styled.div`
 const Image = styled.img`
   height: 75%;
   z-index: 2;
+  
+  ${mobile({height:"85%"})}
 `;
 
 const Icon = styled.div`
