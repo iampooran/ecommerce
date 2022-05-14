@@ -4,6 +4,7 @@ import Anouncement from "../components/Anouncement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
     
@@ -14,6 +15,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    ${mobile({padding:"10px",flexDirection: "column"})}
 `;
 
 const ImgContainer = styled.div`
@@ -25,11 +27,13 @@ const Image = styled.img`
     width: 85%;
     height: 60vh;
     object-fit: cover;
+    ${mobile({width:"90%", objectFit: "contain",height:"40vh"})}
 `;
 
 const InfoContainer = styled.div`
     flex: 1;
     padding: 0px 50px;
+    ${mobile({padding:"10px"})}
 `;
 
 const Title = styled.h1`
@@ -38,6 +42,7 @@ const Title = styled.h1`
 
 const Desc = styled.p`
     margin: 20px 0px;
+         
 `;
 
 const Price = styled.span`
@@ -68,6 +73,7 @@ const AddContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    ${mobile({width:"100%",marginTop:"10px"})}
 `;
 
 const AmountContainer = styled.div`
@@ -104,9 +110,9 @@ const Button = styled.button`
 const Product = () => {
   return (
     <Container>
-        <Anouncement/>
+        
         <Navbar/>
-
+        <Anouncement/>
         <Wrapper>
             <ImgContainer>
                 <Image src="https://www.bitkart.com/pub/media/catalog/product/cache/0ee050c3ffc3555709b9bb6062f4d7e9/a/_/a_502.png"/>

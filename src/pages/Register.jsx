@@ -2,6 +2,7 @@ import styled from "styled-components"
 import Anouncement from "../components/Anouncement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
     height: 80vh;
@@ -13,6 +14,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
     width: 40%;
     padding: 20px;
+    ${mobile({width:"65%"})}
 `;
 
 const Title = styled.h1`
@@ -35,6 +37,7 @@ const Input = styled.input`
 const Agreement = styled.span`
     font-size:12px;
     margin: 20px 0px;
+    ${mobile({fontSize:"14px"})}
 `;
 
 const Button = styled.button`
@@ -54,8 +57,9 @@ const Button = styled.button`
 const Register = () => {
   return (
       <>
-      <Anouncement/>
+      
       <Navbar/>
+      <Anouncement/>
     <Container>
         <Wrapper>
             <Title>CREATE AN ACCOUNT</Title>
