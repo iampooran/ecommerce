@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/ecommerce/static/js/main.2d7a9ddc.js",
+    "main.js": "/ecommerce/static/js/main.12993147.js",
     "static/media/payment_method.png": "/ecommerce/static/media/payment_method.cba0d6e467a9f1b717dc.png",
     "index.html": "/ecommerce/index.html",
-    "main.2d7a9ddc.js.map": "/ecommerce/static/js/main.2d7a9ddc.js.map"
+    "main.12993147.js.map": "/ecommerce/static/js/main.12993147.js.map"
   },
   "entrypoints": [
-    "static/js/main.2d7a9ddc.js"
+    "static/js/main.12993147.js"
   ]
 }
