@@ -62,21 +62,21 @@ const ProductList = () => {
     <Container>
         <Anouncement/>
         <Navbar/>
-        <Title>Graphic Card</Title>
+        <Title>{cat.toUpperCase()}</Title>
         <FilterContainer>
             <Filter>
                 <FilterText>Filter Products:</FilterText>
                 <Select name="brand" onChange={handleFilters}>
                     <Option disabled>Brand</Option>
-                    <Option>Nvidia</Option>
-                    <Option>AMD</Option>
+                    <Option>nvidia</Option>
+                    <Option>amd</Option>
                 </Select>
             </Filter>
 
             <Filter>
                 <FilterText>Sort Products:</FilterText>
                 <Select onChange={(e) => setSort(e.target.value)}>
-                    <Option value="newest">Newest</Option>
+                    <Option value="newest">newest</Option>
                     <Option value="asc">Low to High</Option>
                     <Option value="desc">High to Low</Option>
                 </Select>

@@ -1,10 +1,15 @@
 import { Add, Remove } from "@mui/icons-material";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components"
 import Anouncement from "../components/Anouncement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
+import { publicRequest } from "../requestMethod";
+
+
 
 const Container = styled.div`
     
@@ -105,25 +110,64 @@ const Button = styled.button`
     }
 `;
 
+const AddCursor = styled.span`
+ cursor: pointer;
+`;
+
+
 
 
 const Product = () => {
     
+    const location = useLocation();
+    const id = location.pathname.split("/")[2];
+    const [product,setProduct] = useState({});
+    const [quantity,setQuantity] = useState(1);
+
+    useEffect(()=>{
+        const getProduct = async () =>{
+            try{
+                const res = await publicRequest.get("/product/find/" + id)
+                setProduct(res.data);
+                
+            }
+            catch(err){
+
+            }
+        };
+        getProduct();
+    },[id]);
+
+    const handleQuantity = (type) =>{
+        if(type=== "dec"){
+            quantity > 1 && setQuantity(quantity-1)
+        }
+        else
+        {
+            quantity < 5 && setQuantity(quantity+1)
+        }
+    }
+    
+    const handleClick = () =>{
+        //update cart
+        
+    }
+
   return (
     <Container>
-        
         <Navbar/>
         <Anouncement/>
         <Wrapper>
             <ImgContainer>
-                <Image src="https://www.bitkart.com/pub/media/catalog/product/cache/0ee050c3ffc3555709b9bb6062f4d7e9/a/_/a_502.png"/>
+                <Image src={product.img}/>
             </ImgContainer>
             <InfoContainer>
-                <Title>RTX 3060</Title>
+                <Title>{product.title}</Title>
                 <Desc>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus aliquam cum distinctio optio sint voluptatibus quaerat voluptatem similique sit, eligendi id magni vero accusantium corporis consequuntur ab eum iure doloribus?
+                {product.desc}
                 </Desc>
-                <Price>$20</Price>
+                <Price>${product.price}</Price>
+                
                 <FilterContainer>
                     <Filter>
                         <FilterTitle>Size</FilterTitle>
@@ -137,11 +181,11 @@ const Product = () => {
 
                 <AddContainer>
                     <AmountContainer>
-                        <Remove/>
-                        <Amount>1</Amount>
-                        <Add/>
+                    <AddCursor><Remove onClick={()=> handleQuantity("dec")}/></AddCursor>
+                        <Amount>{quantity}</Amount>
+                        <AddCursor><Add onClick={()=> handleQuantity("inc")}/></AddCursor>
                     </AmountContainer>
-                    <Button>ADD TO CART</Button>
+                    <Button onClick={handleClick}>ADD TO CART</Button>
                 </AddContainer>
 
             </InfoContainer>

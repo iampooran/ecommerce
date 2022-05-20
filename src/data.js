@@ -29,7 +29,7 @@ export const categories = [
         id: 1,
         img: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80",
         title: "Graphic Card",
-        cat: "graphic card",
+        cat: "graphiccard",
     },
 
     {
