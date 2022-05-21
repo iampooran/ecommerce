@@ -8,6 +8,8 @@ import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
 import { publicRequest } from "../requestMethod";
+import { addProduct } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
 
 
 
@@ -123,6 +125,8 @@ const Product = () => {
     const id = location.pathname.split("/")[2];
     const [product,setProduct] = useState({});
     const [quantity,setQuantity] = useState(1);
+    const dispatch = useDispatch()
+    
 
     useEffect(()=>{
         const getProduct = async () =>{
@@ -149,8 +153,7 @@ const Product = () => {
     }
     
     const handleClick = () =>{
-        //update cart
-        
+        dispatch(addProduct({ ...product, quantity}))
     }
 
   return (

@@ -1,4 +1,5 @@
 import { Add, Remove } from "@mui/icons-material";
+import { useSelector } from "react-redux";
 import styled from "styled-components"
 import Anouncement from "../components/Anouncement";
 import Footer from "../components/Footer";
@@ -152,6 +153,7 @@ const Button  = styled.button`
 `;
 
 const Cart = () => {
+    const cart = useSelector(state=>state.cart)
   return (
       <>
       
@@ -172,50 +174,31 @@ const Cart = () => {
 
             <Bottom>
                 <Info>
-                    <Product>
+                    {cart.product.map(product=>(
+                        <Product key={product._id}>
                         <ProductDetail>
-                            <Image src="https://www.bitkart.com/pub/media/catalog/product/cache/0ee050c3ffc3555709b9bb6062f4d7e9/a/_/a_502.png"/>
+                            <Image src={product.img}/>
                             <Details>
-                                <ProductName><b>Product:</b> Product Name</ProductName>
-                                <ProductSize><b>Size:</b> 6 GB</ProductSize>
-                                <ProductId><b>ID:</b> 654566544654</ProductId>
+                                <ProductName><b>Product:</b> {product.title}</ProductName>
+                                <ProductSize><b>Brand:</b> {`${product.brand}`.toUpperCase()}</ProductSize>
+                                <ProductId><b>ID:</b> {product._id}</ProductId>
                             </Details>
                         </ProductDetail>
 
                         <PriceDetail>
                                 <ProductAmountContainer>
                                     <Add/>
-                                    <ProductAmount>2</ProductAmount>
+                                    <ProductAmount>{product.quantity}</ProductAmount>
                                     <Remove/>
                                 </ProductAmountContainer>
-                                <ProductPrice>30$</ProductPrice>
+                                <ProductPrice>${product.price * product.quantity}</ProductPrice>
                         </PriceDetail>
 
                     </Product>
+                    )
+                    )}
 
                     <Hr />
-
-                    <Product>
-                        <ProductDetail>
-                            <Image src="https://www.bitkart.com/pub/media/catalog/product/cache/0ee050c3ffc3555709b9bb6062f4d7e9/b/_/b_490_2.png"/>
-                            <Details>
-                                <ProductName><b>Product:</b> Product Name</ProductName>
-                                <ProductSize><b>Size:</b> 6 GB</ProductSize>
-                                <ProductId><b>ID:</b> 654566544654</ProductId>
-                            </Details>
-                        </ProductDetail>
-
-                        <PriceDetail>
-                                <ProductAmountContainer>
-                                    <Add/>
-                                    <ProductAmount>2</ProductAmount>
-                                    <Remove/>
-                                </ProductAmountContainer>
-                                <ProductPrice>30$</ProductPrice>
-                        </PriceDetail>
-
-                    </Product>
-
                 </Info>
 
                 <Summary>
@@ -223,22 +206,22 @@ const Cart = () => {
                     
                     <SummaryItem>
                         <SummaryItemText>Subtotal</SummaryItemText>
-                        <SummaryItemPrice>$ 80</SummaryItemPrice>
+                        <SummaryItemPrice>${cart.total}</SummaryItemPrice>
                     </SummaryItem>
                     
                     <SummaryItem>
                         <SummaryItemText>Estimated Shipping</SummaryItemText>
-                        <SummaryItemPrice>$ 200</SummaryItemPrice>
+                        <SummaryItemPrice>$9.99</SummaryItemPrice>
                     </SummaryItem>
 
                     <SummaryItem>
                         <SummaryItemText>Shipping Discount</SummaryItemText>
-                        <SummaryItemPrice>$ 10</SummaryItemPrice>
+                        <SummaryItemPrice>$9.99</SummaryItemPrice>
                     </SummaryItem>
 
                     <SummaryItem type="total">
                         <SummaryItemText>Total</SummaryItemText>
-                        <SummaryItemPrice>$ 80</SummaryItemPrice>
+                        <SummaryItemPrice>${cart.total}</SummaryItemPrice>
                     </SummaryItem>
                     <Button>CHECKOUT NOW</Button>
                 </Summary>
