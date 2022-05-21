@@ -5,6 +5,14 @@ import Anouncement from "../components/Anouncement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
+import StripeCheckout from 'react-stripe-checkout';
+import { useEffect, useState } from "react";
+// import axios from "axios"
+import {userRequest} from "../requestMethod"
+import {  useNavigate } from "react-router-dom";
+
+
+const KEY = "pk_test_51L0reeSAwhrnMdtig4HV3O1phtvG7kfsl5WKbgSLXxB1YpIBBKuvxhawTUJZwR98AriqDzLXvspDFdfZgyEhl0B8007EoeBj8P"
 
 const Container = styled.div`
 
@@ -154,6 +162,27 @@ const Button  = styled.button`
 
 const Cart = () => {
     const cart = useSelector(state=>state.cart)
+    const [stripeToken, setStripeToken] =  useState(null);
+    const history =  useNavigate()
+
+    const onToken = (token) =>{
+        setStripeToken(token);
+   }
+
+
+   useEffect(() => {
+    const makeRequest = async () => {
+      try {
+        const res = await userRequest.post("/checkout/payment", {
+          tokenId: stripeToken.id,
+          amount: 500,
+        });
+        history.push("/success", {
+          stripeData: res.data,});
+      } catch {}
+    };
+    stripeToken && makeRequest();
+  }, [stripeToken, cart.total, history]);
   return (
       <>
       
@@ -223,7 +252,15 @@ const Cart = () => {
                         <SummaryItemText>Total</SummaryItemText>
                         <SummaryItemPrice>${cart.total}</SummaryItemPrice>
                     </SummaryItem>
-                    <Button>CHECKOUT NOW</Button>
+                    <StripeCheckout
+                        name="Pooran Sen" 
+                        description={`Your total is $${cart.total * 100}`}
+                        amount={cart.total * 100}
+                        token={onToken}
+                        stripeKey={KEY}
+                    >
+                        <Button>CHECKOUT NOW</Button>
+                    </StripeCheckout>
                 </Summary>
             </Bottom>
         </Wrapper>
